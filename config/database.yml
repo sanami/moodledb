@@ -1,0 +1,21 @@
+ege_full:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: ege_full
+  pool: 5
+  username: root
+  password: "123456"
+  host: localhost
+
+campuslingua:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: campusli_campus
+  pool: 5
+  username: campusli_campus
+  password: "lingua123"
+  host: localhost
+#  host: "50.116.81.50"
+#  port: 33060

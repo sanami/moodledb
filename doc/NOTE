@@ -1,0 +1,10 @@
+----------------------------------------------------------------------------- rake
+br moodle:list_tables[ege_full]
+
+
+----------------------------------------------------------------------------- ssh
+ssh sa@50.116.81.50
+
+ssh -L 33060:localhost:3306 sa@50.116.81.50
+
+mysqldump -h localhost -u campusli_campus -plingua123 campusli_campus > campusli_campus_0323.sql
