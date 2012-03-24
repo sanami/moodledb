@@ -1,3 +1,7 @@
+require 'models/wiki.rb'
+require 'models/wiki_entry.rb'
+require 'models/wiki_page.rb'
+
 class Moodle
   def initialize(name)
     establish_connection(name)

@@ -8,6 +8,16 @@ ege_full:
   password: "123456"
   host: localhost
 
+ege_test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: ege_test
+  pool: 5
+  username: root
+  password: "123456"
+  host: localhost
+
 campuslingua:
   adapter: mysql2
   encoding: utf8
