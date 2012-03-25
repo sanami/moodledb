@@ -1,3 +1,4 @@
+require 'models/course.rb'
 require 'models/wiki.rb'
 require 'models/wiki_entry.rb'
 require 'models/wiki_page.rb'

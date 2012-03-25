@@ -1,14 +1,34 @@
-require 'moodle.rb'
+require 'bilingual/parser.rb'
 
-# Tools for moodle db
-namespace :moodle do
+namespace :wiki do
 
-	desc "List all tables"
-	task :list_tables, [:env] do |t, args|
-    if args[:env]
+  desc "Import wiki pages to course"
+  task :import, [:env, :course_id, :row_limit] do |t, args|
+    pp args
+    course_id = args[:course_id] ? args[:course_id].to_i : nil
+    row_limit = args[:row_limit] ? args[:row_limit].to_i : nil
+
+    if args[:env] && course_id
       tool = Moodle.new(args[:env])
-      pp tool.tables
+
+      parser = Bilingual::Parser.new
+      parser.run(args[:env], course_id, row_limit)
     end
-	end
+  end
+
+  desc "Delete wiki pages from course"
+  task :delete, [:env, :course_id] do |t, args|
+    pp args
+    course_id = args[:course_id] ? args[:course_id].to_i : nil
+
+    if args[:env] && course_id
+      tool = Moodle.new(args[:env])
+
+      course = Course.find(course_id)
+      course.print_info
+      course.wikis.destroy_all
+      course.print_info
+    end
+  end
 
 end

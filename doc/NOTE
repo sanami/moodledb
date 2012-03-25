@@ -9,8 +9,12 @@
 
 
 ----------------------------------------------------------------------------- rake
-br moodle:list_tables[ege_full]
+bundle exec rake moodle:list_tables[ege_full]
 
+bundle exec rake moodle:list_courses[ege_full]
+
+bundle exec rake wiki:import[ege_test,97]
+bundle exec rake wiki:delete[ege_test,97]
 
 ----------------------------------------------------------------------------- ssh
 ssh sa@50.116.81.50

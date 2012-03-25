@@ -3,7 +3,7 @@ class WikiEntry < ActiveRecord::Base
 
   # Relations
   belongs_to :wiki, :foreign_key => 'wikiid'
-  has_many :wiki_pages, :foreign_key => 'wiki'
+  has_many :wiki_pages, :foreign_key => 'wiki', :dependent => :destroy
 
   # Scopes
 
@@ -12,7 +12,7 @@ class WikiEntry < ActiveRecord::Base
   # Validations
   validates_presence_of :wikiid, :pagename
   validates_associated :wiki
-  validates_uniqueness_of :pagename
+  #validates_uniqueness_of :pagename
 
   # Defaults
   after_initialize do

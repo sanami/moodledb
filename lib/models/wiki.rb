@@ -2,7 +2,7 @@ class Wiki < ActiveRecord::Base
   self.table_name = 'mdl_wiki'
 
   # Relations
-  has_many :wiki_entries, :foreign_key => 'wikiid'
+  has_many :wiki_entries, :foreign_key => 'wikiid', :dependent => :destroy
 
   # Scopes
 
@@ -10,7 +10,7 @@ class Wiki < ActiveRecord::Base
 
   # Validations
   validates_presence_of :course, :name, :summary, :pagename
-  validates_uniqueness_of :pagename
+  #validates_uniqueness_of :pagename
 
   # Defaults
   after_initialize do
