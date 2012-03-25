@@ -12,6 +12,7 @@ class WikiEntry < ActiveRecord::Base
   # Validations
   validates_presence_of :wikiid, :pagename
   validates_associated :wiki
+  validates_uniqueness_of :pagename
 
   # Defaults
   after_initialize do

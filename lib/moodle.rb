@@ -12,15 +12,6 @@ class Moodle
       ActiveRecord::Base.logger = Logger.new(ROOT('log/debug.log'))
       ActiveRecord::Base.configurations = YAML::load(File.read(ROOT('config/database.yml')))
       ActiveRecord::Base.establish_connection(name)
-
-      #mysqldump -h localhost -u campusli_campus -plingua123 campusli_campus > campusli_campus_0205.sql
-      #ActiveRecord::Base.establish_connection(
-      #  :adapter  => "mysql2",
-      #  :host     => "50.116.81.50",
-      #  :username => "campusli_campus",
-      #  :password => "lingua123",
-      #  :database => "campusli_campus"
-      #)
     end
 
     #config = ActiveRecord::Base.configurations[RAILS_ENV].symbolize_keys

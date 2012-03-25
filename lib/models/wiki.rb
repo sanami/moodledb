@@ -10,11 +10,12 @@ class Wiki < ActiveRecord::Base
 
   # Validations
   validates_presence_of :course, :name, :summary, :pagename
+  validates_uniqueness_of :pagename
 
   # Defaults
   after_initialize do
     if new_record?
-      pp 'Wiki#after_initialize'
+      #pp 'Wiki#after_initialize'
       self.course = nil if self.course == 0
       self.htmlmode = 2
       self.setpageflags = 0

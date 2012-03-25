@@ -60,12 +60,19 @@ describe Moodle do
   it "should create wiki page" do
     entry = WikiEntry.find_by_pagename 'pagename'
     ap entry
-    expect {
-      page = entry.wiki_pages.build :pagename => 'pagename', :content => 'content', :refs => 'refs'
-      ap page
-      page.save!
-    }.to_not raise_error
 
+    entry.wiki_pages.destroy_all
+    COUNT = 10
+
+    COUNT.times do |i|
+      expect {
+        page = entry.wiki_pages.build :pagename => 'pagename', :content => "content #{i}", :refs => 'refs'
+        page.save!
+        #ap page
+      }.to_not raise_error
+    end
+
+    entry.wiki_pages.count.should == COUNT
     pp entry.wiki_pages
   end
 

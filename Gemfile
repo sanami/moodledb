@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 # data
 gem 'activerecord', :require => 'active_record'
 gem 'mysql2'
+gem 'roo'
 
 # testing
 gem 'rspec', :require => false
