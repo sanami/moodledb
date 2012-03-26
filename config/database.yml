@@ -29,3 +29,12 @@ campuslingua:
   host: localhost
 #  host: "50.116.81.50"
 #  port: 33060
+
+pink_campus:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: campus1
+  pool: 5
+  username: root
+  host: localhost
