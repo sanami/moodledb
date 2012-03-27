@@ -23,4 +23,20 @@ namespace :moodle do
     end
   end
 
+  desc "Course info"
+  task :course, [:env, :course_id] do |t, args|
+    pp args
+    course_id = args[:course_id] ? args[:course_id].to_i : nil
+
+    if args[:env] && course_id
+      tool = Moodle.new(args[:env])
+
+      course = Course.find course_id
+      course.print_info
+      puts course.modinfo
+      ap course.modinfo_unserialize
+
+    end
+  end
+
 end

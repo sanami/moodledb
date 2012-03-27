@@ -76,5 +76,29 @@ describe Moodle do
     pp entry.wiki_pages
   end
 
+  it "should unserialize/serialize course modinfo" do
+    course = Course.find(2)
+
+    # as parsed object
+    modinfo_obj = course.modinfo_unserialize
+    modinfo_obj.should_not be_empty
+    ap modinfo_obj
+
+    # new string
+    modinfo_str = course.modinfo_serialize(modinfo_obj)
+    # equal to original
+    modinfo_str.should == course.modinfo
+  end
+
+  it "should update course modinfo" do
+    course = Course.find(2)
+    ap course
+
+    course.modinfo_update
+    course.save!
+
+    ap course.modinfo_unserialize
+  end
+
 end
 

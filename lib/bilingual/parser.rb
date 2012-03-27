@@ -87,7 +87,9 @@ module Bilingual
         build(course, section)
       end
 
-      #course.print_info
+      course.modinfo_update
+      course.save!
+      course.print_info
     end
 
   end

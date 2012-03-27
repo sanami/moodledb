@@ -11,3 +11,4 @@ gem 'rspec', :require => false
 # general
 gem 'rake'
 gem 'awesome_print'
+gem 'php_serialize'

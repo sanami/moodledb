@@ -16,6 +16,19 @@ namespace :wiki do
     end
   end
 
+  #task :import_to_wiki, [:env, :wiki_id, :row_limit] do |t, args|
+  #  pp args
+  #  wiki_id = args[:wiki_id] ? args[:wiki_id].to_i : nil
+  #  row_limit = args[:row_limit] ? args[:row_limit].to_i : nil
+  #
+  #  if args[:env] && wiki_id
+  #    tool = Moodle.new(args[:env])
+  #
+  #    parser = Bilingual::Parser.new
+  #    parser.run_to_wiki(args[:env], wiki_id, row_limit)
+  #  end
+  #end
+  
   desc "Delete wiki pages from course"
   task :delete, [:env, :course_id] do |t, args|
     pp args
