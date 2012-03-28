@@ -4,6 +4,7 @@ source 'http://rubygems.org'
 gem 'activerecord', :require => 'active_record'
 gem 'mysql2'
 gem 'roo'
+gem 'tilt'
 
 # testing
 gem 'rspec', :require => false

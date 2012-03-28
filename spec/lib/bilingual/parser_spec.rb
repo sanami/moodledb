@@ -32,7 +32,7 @@ describe Bilingual::Parser do
   end
 
   it "should create content page" do
-    page = subject.section_page test_data
+    page, refs = subject.section_page test_data
     page.should_not be_empty
     puts page
   end

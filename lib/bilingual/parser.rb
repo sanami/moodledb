@@ -45,21 +45,25 @@ module Bilingual
     end
 
     def section_page(section)
-      page = ''
-      page << section[:ref] << "\n"
-      page << "\n"
+      @template ||= Tilt.new(ROOT('lib/bilingual/template.html.erb').to_s)
 
-      refs = ''
+      page = []
+      page << section[:ref] << ''
+
+      refs = []
 
       section[:examples].each do |example|
-        page << example[:english] << "\n"
-        page << example[:french] << "\n"
-        page << "\n"
+        page << example[:english]
+        page << example[:french] << ''
 
-        refs << example[:tags].join(', ') << "\n"
+        refs += example[:tags]
       end
 
-      { :content => page, :refs => refs }
+      #page = page.join("<br>\n")
+      page = @template.render(self, :section => section)
+      page.force_encoding 'UTF-8'
+
+      [page, refs.uniq.join("\n") ]
     end
 
     def build(course, section)
@@ -76,7 +80,7 @@ module Bilingual
       wiki_page.save!
     end
 
-    def run(env, course_id, row_limit)
+    def run_to_course(course_id, row_limit)
       course = Course.find(course_id)
       #course.print_info
 
@@ -90,6 +94,33 @@ module Bilingual
       course.modinfo_update
       course.save!
       course.print_info
+    end
+
+    def run_to_wiki(wiki_id, row_limit)
+      wiki = Wiki.find(wiki_id)
+      ap wiki.course
+      ap wiki
+
+      wiki_entry = wiki.wiki_entries.first
+      unless wiki_entry
+        wiki_entry = wiki.wiki_entries.build(:pagename => wiki.pagename)
+        wiki_entry.save!
+      end
+      ap wiki_entry
+
+      file = ROOT('lib/bilingual/data.xlsm')
+      all = load(file, 'Caro', row_limit)
+      all.each do |section|
+        #ap section
+        content, refs = section_page(section)
+
+        wiki_page = wiki_entry.wiki_pages.build :pagename => section[:ref], :content => content, :refs => refs
+        wiki_page.save!
+      end
+
+      wiki.course.modinfo_update
+      wiki.course.save!
+      wiki.course.print_info
     end
 
   end

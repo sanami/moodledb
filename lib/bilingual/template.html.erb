@@ -1,0 +1,20 @@
+<b>
+  <%= section[:ref] %>
+</b>
+
+<% section[:examples].each do |example| %>
+  <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal normal normal 12px/normal times; ">
+    <font class="Apple-style-span" size="3" face="georgia, 'times new roman', times, serif"><span class="Apple-tab-span" style="white-space: pre; ">&nbsp;</span>
+      <%= example[:english] %>
+    </font>
+  </p>
+
+  <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal normal normal 12px/normal times; color: rgb(54, 0, 252); ">
+    <font class="Apple-style-span" size="3" face="georgia, 'times new roman', times, serif"><span style="color: rgb(0, 0, 0); ">
+      <i><span class="Apple-tab-span" style="white-space: pre; ">&nbsp;</span></i></span>
+      <i>
+        <%= example[:french] %>
+      </i>
+    </font>
+  </p>
+<% end %>

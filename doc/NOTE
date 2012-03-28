@@ -7,14 +7,25 @@
 
   # Validations
 
+1. Список курсов moodle:list_courses, смотреть wiki_id куда добавить записи
+2. Импорт в существующий wiki_id  wiki:import_to_wiki
 
 ----------------------------------------------------------------------------- rake
-bundle exec rake moodle:list_tables[ege_full]
+bundle exec rake moodle:list_tables[ege_test]
 
-bundle exec rake moodle:list_courses[ege_full]
+bundle exec rake moodle:list_courses[ege_test]
 
-bundle exec rake wiki:import[ege_test,97]
-bundle exec rake wiki:delete[ege_test,97]
+bundle exec rake wiki:import_to_course[ege_test,97]
+  импорт в курс
+
+bundle exec rake wiki:delete_by_course[ege_test,97]
+  удалить все страницы курса
+
+bundle exec rake wiki:delete_by_author[ege_test]
+  удалить сгенерированные страницы
+
+bundle exec rake wiki:import_to_wiki[ege_test,1]
+  импорт в wiki
 
 ----------------------------------------------------------------------------- ssh
 ssh sa@50.116.81.50

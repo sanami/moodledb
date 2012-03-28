@@ -2,6 +2,7 @@ class Wiki < ActiveRecord::Base
   self.table_name = 'mdl_wiki'
 
   # Relations
+  belongs_to :course, :foreign_key => 'course'
   has_many :wiki_entries, :foreign_key => 'wikiid', :dependent => :destroy
 
   # Scopes
@@ -26,4 +27,19 @@ class Wiki < ActiveRecord::Base
     end
   end
 
+  def self.delete_wiki_by_author(author)
+    WikiPage.where(:author => author).each do |page|
+      #entry = page.wiki_entry
+      page.destroy
+
+      #if entry.wiki_pages.count == 0
+      #  wiki = entry.wiki
+      #  entry.destroy
+      #
+      #  if wiki.wiki_entries.count == 0
+      #    wiki.destroy
+      #  end
+      #end
+    end
+  end
 end

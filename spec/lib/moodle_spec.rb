@@ -100,5 +100,10 @@ describe Moodle do
     ap course.modinfo_unserialize
   end
 
+  it "should find by author" do
+    #pp WikiEntry.by_author 'Mark (127.0.0.1:20123)'
+    Wiki.delete_wiki_by_author 'Mark (127.0.0.1:20123)'
+  end
+
 end
 

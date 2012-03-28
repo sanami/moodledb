@@ -6,6 +6,7 @@ class WikiEntry < ActiveRecord::Base
   has_many :wiki_pages, :foreign_key => 'wiki', :dependent => :destroy
 
   # Scopes
+  scope :by_author, lambda { |author| joins(:wiki_pages).where('mdl_wiki_pages.author' => author).uniq }
 
   # Delegations
 
