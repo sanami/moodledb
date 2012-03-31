@@ -21,3 +21,19 @@ password: (your email)
 
 Type something in the "search the site" box and you should get a wiki.
 It's at www.campuslinguaonline.com
+
+
+I've created a new login as admin for you on:
+
+http://campuslinguaonline.com/v2/
+
+This is the pre-production site.
+
+your info is;
+
+login: 		alexandr
+password: 	sanami77@gmail.com
+
+You can add a wiki activity on the front page.
+
+Once it's uploaded, you should go to "search the site" and then run the indexer. That takes a few minutes. Once the indexing is done, we can look up a word and see if it finds it in the wiki.

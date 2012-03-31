@@ -33,3 +33,4 @@ ssh sa@50.116.81.50
 ssh -L 33060:localhost:3306 sa@50.116.81.50
 
 mysqldump -h localhost -u campusli_campus -plingua123 campusli_campus > campusli_campus_0323.sql
+mysqldump -h localhost -u campusli_camuser -pLingua123$ campusli_campusv1 > campusli_campusv1_0331.sql

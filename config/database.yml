@@ -30,6 +30,16 @@ campuslingua:
 #  host: "50.116.81.50"
 #  port: 33060
 
+campuslingua_v2:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: campusli_campusv1
+  pool: 5
+  username: campusli_camuser
+  password: "Lingua123$"
+  host: localhost
+
 campus:
   adapter: mysql2
   encoding: utf8

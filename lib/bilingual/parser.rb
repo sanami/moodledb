@@ -98,15 +98,13 @@ module Bilingual
 
     def run_to_wiki(wiki_id, row_limit)
       wiki = Wiki.find(wiki_id)
-      ap wiki.course
-      ap wiki
+      wiki.course.print_info
 
       wiki_entry = wiki.wiki_entries.first
       unless wiki_entry
         wiki_entry = wiki.wiki_entries.build(:pagename => wiki.pagename)
         wiki_entry.save!
       end
-      ap wiki_entry
 
       file = ROOT('lib/bilingual/data.xlsm')
       all = load(file, 'Caro', row_limit)
@@ -123,5 +121,24 @@ module Bilingual
       wiki.course.print_info
     end
 
+    def run_to_wiki_entry(wiki_entry_id, row_limit)
+      wiki_entry = WikiEntry.find(wiki_entry_id)
+      wiki_entry.wiki.course.print_info
+
+      file = ROOT('lib/bilingual/data.xlsm')
+      all = load(file, 'Caro', row_limit)
+      all.each do |section|
+        #ap section
+        content, refs = section_page(section)
+
+        wiki_page = wiki_entry.wiki_pages.build :pagename => section[:ref], :content => content, :refs => refs
+        wiki_page.save!
+      end
+
+      wiki_entry.wiki.course.modinfo_update
+      wiki_entry.wiki.course.save!
+      wiki_entry.wiki.course.print_info
+    end
+    
   end
 end
