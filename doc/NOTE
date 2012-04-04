@@ -11,9 +11,11 @@
 2. Импорт в существующий wiki_id  wiki:import_to_wiki
 
 ----------------------------------------------------------------------------- rake
-bundle exec rake moodle:list_tables[ege_test]
+bundle exec rake moodle:list_courses[campuslingua_v2]
+bundle exec rake wiki:delete_by_author[campuslingua_v2]
+bundle exec rake wiki:import_to_entry[campuslingua_v2,12,data2.xlsx]
 
-bundle exec rake moodle:list_courses[ege_test]
+bundle exec rake moodle:list_tables[ege_test]
 
 bundle exec rake wiki:import_to_course[ege_test,97]
   импорт в курс

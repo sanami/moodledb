@@ -3,9 +3,9 @@ require 'moodle.rb'
 
 module Bilingual
   class Parser
-    def load(xls_file, sheet_name, row_limit = nil)
+    def load(xls_file, row_limit = nil)
       sheet = Excelx.new(xls_file.to_s, nil, :ignore)
-      sheet.default_sheet = sheet_name
+      sheet.default_sheet = sheet.sheets.first
       puts "row_limit: #{row_limit}"
       puts sheet.info
 
@@ -58,12 +58,13 @@ module Bilingual
 
         refs += example[:tags]
       end
+      refs.uniq!
 
       #page = page.join("<br>\n")
-      page = @template.render(self, :section => section)
+      page = @template.render(self, :section => section, :refs => refs)
       page.force_encoding 'UTF-8'
 
-      [page, refs.uniq.join("\n") ]
+      [page, refs.join("\n") ]
     end
 
     def build(course, section)
@@ -85,7 +86,7 @@ module Bilingual
       #course.print_info
 
       file = ROOT('lib/bilingual/data.xlsm')
-      all = load(file, 'Caro', row_limit)
+      all = load(file, row_limit)
       all.each do |section|
         #ap section
         build(course, section)
@@ -107,7 +108,7 @@ module Bilingual
       end
 
       file = ROOT('lib/bilingual/data.xlsm')
-      all = load(file, 'Caro', row_limit)
+      all = load(file, row_limit)
       all.each do |section|
         #ap section
         content, refs = section_page(section)
@@ -121,12 +122,12 @@ module Bilingual
       wiki.course.print_info
     end
 
-    def run_to_wiki_entry(wiki_entry_id, row_limit)
+    def run_to_wiki_entry(wiki_entry_id, file_name, row_limit)
       wiki_entry = WikiEntry.find(wiki_entry_id)
       wiki_entry.wiki.course.print_info
 
-      file = ROOT('lib/bilingual/data.xlsm')
-      all = load(file, 'Caro', row_limit)
+      file = ROOT("lib/bilingual/#{file_name}")
+      all = load(file, row_limit)
       all.each do |section|
         #ap section
         content, refs = section_page(section)

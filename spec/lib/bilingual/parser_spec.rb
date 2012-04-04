@@ -3,6 +3,7 @@ require 'bilingual/parser.rb'
 
 describe Bilingual::Parser do
   let(:test_file) { ROOT('lib/bilingual/data.xlsm') }
+  let(:test_file2) { ROOT('lib/bilingual/data2.xlsx') }
 
   let(:test_data) {
     example = {:english => '"Who is our next patient?" asked the doctor.',
@@ -18,13 +19,21 @@ describe Bilingual::Parser do
   }
 
   it "should load small data" do
-    all = subject.load(test_file, 'Caro', 100)
+    all = subject.load(test_file, 100)
     all.should_not be_empty
     ap all
   end
 
   it "should load all data" do
-    all = subject.load(test_file, 'Caro')
+    all = subject.load(test_file)
+    all.should_not be_empty
+    puts all.count
+    ap all.first
+    ap all.last
+  end
+
+  it "should load all data2" do
+    all = subject.load(test_file2)
     all.should_not be_empty
     puts all.count
     ap all.first

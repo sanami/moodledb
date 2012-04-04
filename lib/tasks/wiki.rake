@@ -29,16 +29,16 @@ namespace :wiki do
     end
   end
 
-  task :import_to_entry, [:env, :wiki_entry_id, :row_limit] do |t, args|
+  task :import_to_entry, [:env, :wiki_entry_id, :file, :row_limit] do |t, args|
     pp args
     wiki_entry_id = args[:wiki_entry_id] ? args[:wiki_entry_id].to_i : nil
     row_limit = args[:row_limit] ? args[:row_limit].to_i : nil
 
-    if args[:env] && wiki_entry_id
+    if args[:env] && args[:file] && wiki_entry_id
       tool = Moodle.new(args[:env])
 
       parser = Bilingual::Parser.new
-      parser.run_to_wiki_entry(wiki_entry_id, row_limit)
+      parser.run_to_wiki_entry(wiki_entry_id, args[:file], row_limit)
     end
   end
 

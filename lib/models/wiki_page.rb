@@ -9,7 +9,7 @@ class WikiPage < ActiveRecord::Base
   # Delegations
 
   # Validations
-  validates_presence_of :wiki, :pagename, :content, :refs
+  validates_presence_of :wiki, :pagename, :content
   validates_associated :wiki_entry
 
   # Defaults
